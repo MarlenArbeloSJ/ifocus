@@ -5,7 +5,7 @@ import { Error404PageComponent } from './shared/pages/error404-page/error404-pag
 // dominio.com/
 const routes: Routes = [
   {
-    path: 'auth',
+    path: 'login',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
@@ -19,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'heroes',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
