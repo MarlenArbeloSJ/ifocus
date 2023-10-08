@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+.bg-image {
+  background-image: url("./assets/utils/background.jfif");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #66999;
+}
