@@ -1,61 +1,95 @@
 <section class="vh-100">
   <div class="container py-5 h-100">
-
-
     <div class="row d-flex justify-content-center">
-
       <div class="text-center">
-        <img src="../../../../assets/utils/logo_min.svg" alt="icono" class="px-3" />
-        <img src="../../../../assets/utils/digitalcoach.svg" alt="ifocus" />
+        <img
+          src="../../../../assets/utils/logo_min.svg"
+          alt="icono"
+          class="px-1"
+        />
+        <img
+          src="../../../../assets/utils/digitalcoach.svg"
+          alt="ifocus"
+          class="px-1"
+        />
       </div>
-
     </div>
 
     <div class="row d-flex justify-content-center align-items-center h-75">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card shadow-2-strong" style="border-radius: 0.4rem">
+        <div
+          *ngIf="wrongCredentials"
+          class="alert alert-danger d-flex align-items-center"
+          role="alert"
+        >
+          <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:">
+            <use xlink:href="#exclamation-triangle-fill" />
+          </svg>
+          <div>An example danger alert with an icon</div>
+        </div>
+
+        <div class="card shadow-2-strong" style="border-radius: 10px">
           <div class="card-body p-5">
-            <h1 class="mb-0 text-center">INICIAR SESIÓN</h1>
-            <h2 class="text-center mb-4">
-              Acceso exclusivo para usuarios administradores.
-            </h2>
+            <form
+              class="form-horizontal form-material"
+              autocomplete="off"
+              [formGroup]="loginForm"
+              (ngSubmit)="login()"
+              id="loginform"
+            >
+              <h1 class="mb-0 text-center">INICIAR SESIÓN</h1>
+              <h2 class="text-center mb-4">
+                Acceso exclusivo para usuarios administradores.
+              </h2>
 
-            <div class="form-outline mb-6 pb-4">
-              <label for="basic-url" class="form-label mb-2">Email</label>
-              <input
-                type="email"
-                id="typeEmailX-2"
-                class="form-control form-control-lg"
-                placeholder="&nbsp;Enter your email"
-              />
-            </div>
+              <div class="form-outline mb-6 pb-4">
+                <label for="basic-url" class="form-label mb-2">Email</label>
+                <input
+                  type="email"
+                  id="typeEmailX-2"
+                  class="form-control form-control-lg"
+                  placeholder="&nbsp;Enter your email"
+                  [ngClass]="{ 'is-invalid': wrongCredentials }"
+                  type="email"
+                  formControlName="email"
+                />
+              </div>
 
-            <div class="form-outline mb-6 pb-3">
-              <label for="basic-url" class="form-label">Contraseña</label>
-              <input
-                type="password"
-                id="typePasswordX-2"
-                class="form-control form-control-lg"
-                placeholder="&nbsp;Enter your password"
-              />
-            </div>
+              <div class="form-outline mb-6 pb-3">
+                <label for="basic-url" class="form-label">Contraseña</label>
+                <input
+                  type="password"
+                  id="typePasswordX-2"
+                  class="form-control form-control-lg"
+                  placeholder="&nbsp;Enter your password"
+                  [ngClass]="{ 'is-invalid': wrongCredentials }"
+                  formControlName="password"
+                />
+              </div>
 
-            <!-- Checkbox -->
-            <div class="form-check d-flex justify-content-start mb-4">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="form1Example3"
-              />
-              <label class="form-check-label" for="form1Example3"
-                >&nbsp;&nbsp;Recordar contraseña</label
-              >
-            </div>
+              <!-- Checkbox -->
+              <div class="form-check d-flex mb-4">
+                <div class="me-auto m-0 p-0">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="form1Example3"
+                    formControlName="remember"
+                  />
+                  <label class="form-check-label" for="form1Example3"
+                    >&nbsp;&nbsp;Recordar contraseña</label
+                  >
+                </div>
+                <label class="form-check-label forget-pass"
+                  >&nbsp;&nbsp;¿Olvidaste la contraseña?</label
+                >
+              </div>
 
-            <div class="d-grid gap-2">
-              <button class="btn btn-dark p-3" type="submit">Login</button>
-            </div>
+              <div class="d-grid gap-2">
+                <button [disabled]="!loginForm.valid" class="btn btn-dark p-3" type="submit">Login</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>

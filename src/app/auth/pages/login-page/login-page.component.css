@@ -56,5 +56,19 @@ button {
 }
 
 .h-75 {
-  height: 75%!important;
+  height: 75% !important;
+}
+
+.forget-pass {
+  color: #4d4d4d;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.forget-pass:hover {
+  cursor: pointer;
+  color: #818080;
 }
