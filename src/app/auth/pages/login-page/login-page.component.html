@@ -1,7 +1,7 @@
 <section class="vh-100">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center">
-      <div class="text-center">
+      <div class="text-center my-2">
         <img
           src="../../../../assets/utils/logo_min.svg"
           alt="icono"
@@ -77,17 +77,23 @@
                     id="form1Example3"
                     formControlName="remember"
                   />
-                  <label class="form-check-label" for="form1Example3"
-                    >&nbsp;&nbsp;Recordar contraseña</label
-                  >
+                  <label class="form-check-label text-wrap" for="form1Example3">
+                    &nbsp;&nbsp;Recordar contraseña
+                  </label>
                 </div>
-                <label class="form-check-label forget-pass"
-                  >&nbsp;&nbsp;¿Olvidaste la contraseña?</label
-                >
+                <label class="form-check-label text-wrap forget-pass">
+                  &nbsp;&nbsp;¿Olvidaste la contraseña?
+                </label>
               </div>
 
               <div class="d-grid gap-2">
-                <button [disabled]="!loginForm.valid" class="btn btn-dark p-3" type="submit">Login</button>
+                <button
+                  [disabled]="!loginForm.valid"
+                  class="btn btn-dark p-3"
+                  type="submit"
+                >
+                  Login
+                </button>
               </div>
             </form>
           </div>
