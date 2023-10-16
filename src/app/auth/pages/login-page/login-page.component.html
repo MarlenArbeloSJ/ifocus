@@ -53,6 +53,7 @@
                   type="email"
                   formControlName="email"
                   autofocus
+                  [(ngModel)]="user.email"
                 />
               </div>
 
@@ -65,6 +66,7 @@
                   placeholder="&nbsp;Enter your password"
                   [ngClass]="{ 'is-invalid': wrongCredentials }"
                   formControlName="password"
+                  [(ngModel)]="user.password"
                 />
               </div>
 

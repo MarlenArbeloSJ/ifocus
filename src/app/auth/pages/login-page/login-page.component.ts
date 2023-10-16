@@ -4,6 +4,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginForm } from 'src/app/interfaces/login-form.interface';
 import { User } from 'src/app/models/user.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 @Component({
   selector: 'app-login-page',
@@ -13,6 +14,8 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class LoginPageComponent {
   public wrongCredentials: boolean = false;
   public loginData: LoginForm;
+
+  public user: User;
 
   public loginForm = this.fb.group({
     email: [
@@ -27,36 +30,22 @@ export class LoginPageComponent {
     private router: Router,
     private fb: FormBuilder,
     private ngZone: NgZone,
-    private usuarioService: UsuarioService
-  ) {}
+    private authService: AuthService
+  ) {
+    this.user = new User();
+  }
 
-  login() {
-    const loginFormData: LoginForm = {
-      email: this.loginForm.value.email ?? '',
-      password: this.loginForm.value.password ?? '',
-      remember: this.loginForm.get('remember')?.value ?? false,
-    };
+  login(): void {
+    console.log(this.user);
+    if(this.user.email == null || this.user.password == null ){
+      window.alert('El correo y la contraseña son campos obligatorios');
+      return;
+    }
 
-    console.log('Login');
-    console.log(loginFormData);
+    this.authService.login(this.user).subscribe(response => {
+      console.log(response);
+      window.alert('Bienvenido ' + this.user.email);
+    })
 
-    this.usuarioService.loginUser(loginFormData).subscribe(
-      (resp) => {
-        if (loginFormData.remember) {
-          localStorage.setItem('email', loginFormData.email);
-        } else {
-          localStorage.removeItem('email');
-        }
-
-        // Navegar al Dashboard
-        console.log('Logeado correctamente');
-        window.alert('Bienvenido Javier');
-        //this.router.navigateByUrl('/');
-      },
-      (error) => {
-        // Si sucede un error
-        console.log(error);
-      }
-    );
   }
 }
