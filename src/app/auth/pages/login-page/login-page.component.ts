@@ -44,7 +44,10 @@ export class LoginPageComponent {
 
     this.authService.login(this.user).subscribe(response => {
       console.log(response);
-      window.alert('Bienvenido ' + this.user.email);
+      this.authService.saveUser(response.access_token);
+      this.authService.saveToken(response.access_token);
+      let user = this.authService.user;
+      window.alert('Bienvenido ' + user.name);
     })
 
   }
