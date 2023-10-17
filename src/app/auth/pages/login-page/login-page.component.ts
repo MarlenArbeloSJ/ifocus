@@ -2,6 +2,7 @@ import { Component, NgZone } from '@angular/core';
 
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { LoginForm } from 'src/app/interfaces/login-form.interface';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
@@ -31,7 +32,8 @@ export class LoginPageComponent {
     private router: Router,
     private fb: FormBuilder,
     private ngZone: NgZone,
-    private authService: AuthService
+    private authService: AuthService,
+    private location: Location
   ) {
     this.user = new User();
   }
@@ -48,7 +50,11 @@ export class LoginPageComponent {
       this.authService.saveUser(response.access_token);
       this.authService.saveToken(response.access_token);
       let user = this.authService.user;
-      window.alert('Bienvenido ' + user.name);
+      Swal.fire({
+        icon: 'success',
+        title: 'Bienvenido ' + user.name
+      })
+      this.router.navigateByUrl('/home/dashboard');
     }, (error) => {
       if(error.status == 400){
         Swal.fire({
@@ -58,5 +64,9 @@ export class LoginPageComponent {
       }
     });
 
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }
