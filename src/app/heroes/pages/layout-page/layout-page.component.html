@@ -1,9 +1,9 @@
-<app-navbar></app-navbar>
-
-<div id="wrapper" [ngClass]="{ toggled: !collapseSideBar }">
+<div id="wrapper" [ngClass]="{ toggled: collapseSideBar }">
   <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
-      <h2>Logo</h2>
+      <a class="navbar-brand" href="/home/dashboard" style="color: white">
+        Menú
+      </a>
     </div>
     <ul class="sidebar-nav">
       <li class="active">
@@ -19,17 +19,34 @@
   </aside>
 
   <div id="navbar-wrapper">
-    <nav class="navbar navbar-inverse">
+    <nav
+      class="navbar navbar-expand-lg bg-body-tertiary bg-dark"
+      data-bs-theme="dark"
+    >
       <div class="container-fluid">
-        <div class="navbar-header">
-          <a
-            class="navbar-brand"
-            id="sidebar-toggle"
-            (click)="collapseSideBar = !collapseSideBar"
-            style="cursor: pointer;"
-            ><i class="fa fa-bars"></i
-          ></a>
-        </div>
+        <span
+          (click)="collapseSideBar = !collapseSideBar"
+          style="cursor: pointer"
+          ><i
+            class="fa-solid"
+            [ngClass]="{
+              'fa-angles-left': !collapseSideBar,
+              'fa-angles-right': collapseSideBar
+            }"
+          ></i
+        ></span>
+        <a class="navbar-brand" href="#">
+          <img
+            src="../../../assets/utils/dg_logo.svg"
+            alt="Logo"
+            width="30"
+            height="30"
+            class="d-inline-block align-text-top"
+          />
+          IFocus
+        </a>
+
+        <button type="button" class="btn btn-info">{{ role }}</button>
       </div>
     </nav>
   </div>
