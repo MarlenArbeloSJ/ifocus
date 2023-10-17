@@ -3,8 +3,12 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-layout-page',
   templateUrl: './layout-page.component.html',
-  styleUrls: ['./layout-page.component.css']
+  styleUrls: ['./layout-page.component.css'],
 })
 export class LayoutPageComponent {
+  collapseSideBar : boolean;
 
+  constructor() {
+    this.collapseSideBar = false;
+  }
 }
